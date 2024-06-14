@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c25aff3a-0d53-40be-a12b-045bac76d936" name="Changes" comment="first commit">
+    <list default="true" id="c25aff3a-0d53-40be-a12b-045bac76d936" name="Changes" comment="mysql connector has been added using maven instead of installing it">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/jfbarahonag/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jfbarahonag/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,10 +30,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Personal/courses/platzi/Java/Java_SE_SQL_DB/pruebaConexion",
     "onboarding.tips.debug.path": "C:/Personal/courses/platzi/Java/Java_SE_SQL_DB/CRUD/src/main/java/org/jfbarahonag/Main.java",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
@@ -63,7 +65,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718329677412</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="mysql connector has been added using maven instead of installing it">
+      <option name="closed" value="true" />
+      <created>1718330767489</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718330767489</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -79,17 +89,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/jfbarahonag/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="mysql connector has been added using maven instead of installing it" />
+    <option name="LAST_COMMIT_MESSAGE" value="mysql connector has been added using maven instead of installing it" />
   </component>
 </project>

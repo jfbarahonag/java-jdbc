@@ -5,11 +5,15 @@ import java.sql.*;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
-        Connection myConnection;
-        Statement myStatement;
+    public static void main(String[] args) throws SQLException {
+        Connection myConnection = null;
+        Statement myStatement = null;
         PreparedStatement myPreparedStatement;
-        ResultSet myResultSet;
+        ResultSet myResultSet = null;
+
+        String url = "jdbc:mysql://localhost:3306/project";
+        String user = "admin";
+        String pass = ".admin123";
 
         enum Example {
             CASE_1,
@@ -23,9 +27,9 @@ public class Main {
         try {
 
             myConnection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/project",
-                    "admin",
-                    ".admin123"
+                    url,
+                    user,
+                    pass
             );
 
             System.out.println("Database connected");
@@ -92,6 +96,18 @@ public class Main {
         } catch (SQLException e) {
             System.out.println("Something went wrong");
             e.printStackTrace();
+        } finally {
+            if (myResultSet != null) {
+                myResultSet.close();
+            }
+
+            if (myStatement != null) {
+                myStatement.close();
+            }
+
+            if (myConnection != null) {
+                myConnection.close();
+            }
         }
     }
 }
