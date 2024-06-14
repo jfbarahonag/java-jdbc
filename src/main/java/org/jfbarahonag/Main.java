@@ -1,17 +1,97 @@
 package org.jfbarahonag;
 
+import java.sql.*;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Connection myConnection;
+        Statement myStatement;
+        PreparedStatement myPreparedStatement;
+        ResultSet myResultSet;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        enum Example {
+            CASE_1,
+            CASE_2,
+            CASE_3,
+            CASE_4,
+        }
+
+        Example example = Example.CASE_4;
+
+        try {
+
+            myConnection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/project",
+                    "admin",
+                    ".admin123"
+            );
+
+            System.out.println("Database connected");
+
+            if (example == Example.CASE_1) {
+                myStatement = myConnection.createStatement();
+                myResultSet = myStatement.executeQuery("SELECT * FROM employees");
+
+                while (myResultSet.next()) {
+                    System.out.println(myResultSet.getString("first_name"));
+                }
+                return;
+            }
+
+            if (example == Example.CASE_2) {
+                String sqlStatemet = "INSERT INTO employees (first_name, last_name) VALUES (?, ?)";
+                myPreparedStatement = myConnection.prepareStatement(sqlStatemet);
+                myPreparedStatement.setString(1, "Pepito");
+                myPreparedStatement.setString(2, "Perez Sosa");
+
+                int rowsAffected = myPreparedStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("New employee has been added");
+                }
+            }
+
+            if (example == Example.CASE_3) {
+                myStatement = myConnection.createStatement();
+                String s = "UPDATE employees " +
+                        "set last_name='Delgado Ortiz' " +
+                        "WHERE first_name = 'Viviana'";
+                int rowsAffected = myStatement.executeUpdate(s);
+                if (rowsAffected > 0) {
+                    System.out.println("An employee has been updated");
+                }
+
+                myResultSet = myStatement.executeQuery("SELECT * FROM employees ORDER BY id ASC");
+                while (myResultSet.next()) {
+                    System.out.println(
+                            myResultSet.getString("first_name") + " " +
+                                    myResultSet.getString("last_name")
+                    );
+                }
+                return;
+            }
+            if (example == Example.CASE_4) {
+                int employeeId = 1;
+                myPreparedStatement = myConnection.prepareStatement("DELETE FROM employees WHERE id=?");
+                myPreparedStatement.setInt(1, employeeId);
+                int rowsAffected = myPreparedStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("Employee " + employeeId + " has been deleted");
+                }
+                myStatement = myConnection.createStatement();
+                myResultSet = myStatement.executeQuery("SELECT * FROM employees ORDER BY id ASC");
+                while (myResultSet.next()) {
+                    System.out.println(
+                            myResultSet.getString("id") + ") " +
+                                    myResultSet.getString("first_name") + " " +
+                                    myResultSet.getString("last_name")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Something went wrong");
+            e.printStackTrace();
         }
     }
 }
