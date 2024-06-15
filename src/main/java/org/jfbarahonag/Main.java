@@ -26,6 +26,8 @@ public class Main {
             try {
                 IRepository<Employee> repository = new EmployeeRepository();
                 repository.findAll().forEach(System.out::println);
+                System.out.println("---------------------------------");
+                System.out.println(repository.getById(6));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
