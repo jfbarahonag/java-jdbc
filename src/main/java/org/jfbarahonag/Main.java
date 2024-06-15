@@ -1,5 +1,8 @@
 package org.jfbarahonag;
 
+import org.jfbarahonag.model.Employee;
+import org.jfbarahonag.repository.EmployeeRepository;
+import org.jfbarahonag.repository.IRepository;
 import org.jfbarahonag.util.DatabaseConnection;
 
 import javax.swing.plaf.nimbus.State;
@@ -17,18 +20,14 @@ public class Main {
             CASE_4,
         }
 
-        Example example = Example.CASE_2;
+        Example example = Example.CASE_1;
 
         if (example == Example.CASE_1) {
-            try (Connection myConnection = DatabaseConnection.getInstance();
-                 Statement myStatement = myConnection.createStatement();
-                 ResultSet myResultSet = myStatement.executeQuery("SELECT * FROM employees");) {
-                while (myResultSet.next()) {
-                    System.out.println(myResultSet.getString("first_name"));
-                }
+            try {
+                IRepository<Employee> repository = new EmployeeRepository();
+                repository.findAll().forEach(System.out::println);
             } catch (SQLException e) {
-                System.out.println("Something went wrong");
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
 
