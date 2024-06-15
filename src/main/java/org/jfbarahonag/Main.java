@@ -1,5 +1,7 @@
 package org.jfbarahonag;
 
+import org.jfbarahonag.util.DatabaseConnection;
+
 import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 
@@ -7,10 +9,6 @@ import java.sql.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws SQLException {
-
-        String url = "jdbc:mysql://localhost:3306/project";
-        String user = "admin";
-        String pass = ".admin123";
 
         enum Example {
             CASE_1,
@@ -22,7 +20,7 @@ public class Main {
         Example example = Example.CASE_2;
 
         if (example == Example.CASE_1) {
-            try (Connection myConnection = DriverManager.getConnection(url, user, pass);
+            try (Connection myConnection = DatabaseConnection.getInstance();
                  Statement myStatement = myConnection.createStatement();
                  ResultSet myResultSet = myStatement.executeQuery("SELECT * FROM employees");) {
                 while (myResultSet.next()) {
@@ -36,7 +34,7 @@ public class Main {
 
         if (example == Example.CASE_2) {
             String sqlStatemet = "INSERT INTO employees (first_name, last_name) VALUES (?, ?)";
-            try (Connection myConnection = DriverManager.getConnection(url, user, pass);
+            try (Connection myConnection = DatabaseConnection.getInstance();
                  PreparedStatement myPreparedStatement = myConnection.prepareStatement(sqlStatemet);
             ) {
                 myPreparedStatement.setString(1, "Pepito");
@@ -52,7 +50,7 @@ public class Main {
         }
 
         if (example == Example.CASE_3) {
-            try (Connection myConnection = DriverManager.getConnection(url, user, pass);
+            try (Connection myConnection = DatabaseConnection.getInstance();
                  Statement myStatement = myConnection.createStatement();
             ) {
                 String s = "UPDATE employees " +
@@ -70,7 +68,7 @@ public class Main {
                 e.printStackTrace();
             }
 
-            try (Connection myConnection = DriverManager.getConnection(url, user, pass);
+            try (Connection myConnection = DatabaseConnection.getInstance();
                  Statement myStatement = myConnection.createStatement();
                  ResultSet myResultSet = myStatement.executeQuery("SELECT * FROM employees ORDER BY id ASC");
                  ) {
@@ -88,7 +86,7 @@ public class Main {
         }
 
         if (example == Example.CASE_4) {
-            try (Connection myConnection = DriverManager.getConnection(url, user, pass);
+            try (Connection myConnection = DatabaseConnection.getInstance();
                  PreparedStatement myPreparedStatement = myConnection.prepareStatement("DELETE FROM employees WHERE id=?");
             ) {
                 int employeeId = 5;
@@ -102,7 +100,7 @@ public class Main {
                 e.printStackTrace();
             }
 
-            try (Connection myConnection = DriverManager.getConnection(url, user, pass);
+            try (Connection myConnection = DatabaseConnection.getInstance();
                  Statement myStatement = myConnection.createStatement();
                  ResultSet myResultSet = myStatement.executeQuery("SELECT * FROM employees ORDER BY id ASC");
             ) {
