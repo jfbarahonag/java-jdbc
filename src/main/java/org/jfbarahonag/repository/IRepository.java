@@ -6,6 +6,6 @@ import java.util.List;
 public interface IRepository <T> {
     List<T> findAll() throws SQLException;
     T getById(Integer id) throws SQLException;
-    void save(T record);
-    Integer delete(Integer id);
+    boolean save(T record) throws SQLException;
+    Integer delete(Integer id) throws SQLException;
 }

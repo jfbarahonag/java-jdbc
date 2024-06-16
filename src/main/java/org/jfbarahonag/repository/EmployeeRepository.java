@@ -51,12 +51,24 @@ public class EmployeeRepository implements IRepository<Employee> {
     }
 
     @Override
-    public void save(Employee record) {
-
+    public boolean save(Employee record) throws SQLException {
+        String sentence = "INSERT INTO employees (first_name, last_name) VALUES (?,?)";
+        try(PreparedStatement statement = getConnection().prepareStatement(sentence)) {
+            statement.setString(1, record.getFirst_name());
+            statement.setString(2, record.getLast_name());
+            int rows = statement.executeUpdate();
+            return rows == 1;
+        }
     }
 
     @Override
-    public Integer delete(Integer id) {
-        return 0;
+    public Integer delete(Integer id) throws SQLException {
+        String sentence = "DELETE FROM employees WHERE id=?";
+        int rows = 0;
+        try (PreparedStatement statement = getConnection().prepareStatement(sentence)) {
+            statement.setInt(1, id);
+            rows = statement.executeUpdate();
+        }
+        return rows != 0 ? id : rows;
     }
 }

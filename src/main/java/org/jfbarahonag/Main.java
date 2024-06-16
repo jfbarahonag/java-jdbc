@@ -20,7 +20,7 @@ public class Main {
             CASE_4,
         }
 
-        Example example = Example.CASE_1;
+        Example example = Example.CASE_4;
 
         if (example == Example.CASE_1) {
             try {
@@ -34,16 +34,12 @@ public class Main {
         }
 
         if (example == Example.CASE_2) {
-            String sqlStatemet = "INSERT INTO employees (first_name, last_name) VALUES (?, ?)";
-            try (Connection myConnection = DatabaseConnection.getInstance();
-                 PreparedStatement myPreparedStatement = myConnection.prepareStatement(sqlStatemet);
-            ) {
-                myPreparedStatement.setString(1, "Pepito");
-                myPreparedStatement.setString(2, "Perez Sosa");
-                int rowsAffected = myPreparedStatement.executeUpdate();
-                if (rowsAffected > 0) {
-                    System.out.println("New employee has been added");
-                }
+            try {
+                IRepository<Employee> repository = new EmployeeRepository();
+                Employee newEmployee = new Employee("Pepe", "Piolas");
+                boolean done = repository.save(newEmployee);
+                String msg = done ? "New employee has been added":"New employee could not be added";
+                System.out.println(msg);
             } catch (SQLException e) {
                 System.out.println("Something went wrong");
                 e.printStackTrace();
@@ -87,15 +83,12 @@ public class Main {
         }
 
         if (example == Example.CASE_4) {
-            try (Connection myConnection = DatabaseConnection.getInstance();
-                 PreparedStatement myPreparedStatement = myConnection.prepareStatement("DELETE FROM employees WHERE id=?");
-            ) {
-                int employeeId = 5;
-                myPreparedStatement.setInt(1, employeeId);
-                int rowsAffected = myPreparedStatement.executeUpdate();
-                if (rowsAffected > 0) {
-                    System.out.println("Employee " + employeeId + " has been deleted");
-                }
+            try {
+                IRepository<Employee> repository = new EmployeeRepository();
+                int idToRemove = 6;
+                int idRemoved = repository.delete(idToRemove);
+                String msg = (idRemoved > 0) ? "Employee " + idRemoved + " has been deleted" : "Employee " + idToRemove + " could not be removed";
+                System.out.println(msg);
             } catch (SQLException e) {
                 System.out.println("Something went wrong");
                 e.printStackTrace();
