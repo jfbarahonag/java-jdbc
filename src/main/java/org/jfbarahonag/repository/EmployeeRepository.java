@@ -62,6 +62,18 @@ public class EmployeeRepository implements IRepository<Employee> {
     }
 
     @Override
+    public boolean update(int id, Employee record) throws SQLException {
+        String sentence = "UPDATE employees SET first_name=?, last_name=? WHERE id=?";
+        try(PreparedStatement statement = getConnection().prepareStatement(sentence)) {
+            statement.setString(1, record.getFirst_name());
+            statement.setString(2, record.getLast_name());
+            statement.setInt(3, id);
+            int rows = statement.executeUpdate();
+            return rows == 1;
+        }
+    }
+
+    @Override
     public Integer delete(Integer id) throws SQLException {
         String sentence = "DELETE FROM employees WHERE id=?";
         int rows = 0;

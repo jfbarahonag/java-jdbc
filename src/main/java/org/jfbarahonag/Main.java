@@ -20,7 +20,7 @@ public class Main {
             CASE_4,
         }
 
-        Example example = Example.CASE_4;
+        Example example = Example.CASE_3;
 
         if (example == Example.CASE_1) {
             try {
@@ -47,19 +47,23 @@ public class Main {
         }
 
         if (example == Example.CASE_3) {
-            try (Connection myConnection = DatabaseConnection.getInstance();
-                 Statement myStatement = myConnection.createStatement();
-            ) {
-                String s = "UPDATE employees " +
-                        "set last_name='Delgado Ortiz' " +
-                        "WHERE first_name = 'Viviana'";
+            try {
+                IRepository<Employee> repository = new EmployeeRepository();
+                int idToUpdate = 30;
 
-                int rowsAffected = myStatement.executeUpdate(s);
-                if (rowsAffected > 0) {
-                    System.out.println("An employee has been updated");
+                Employee employee = repository.getById(idToUpdate);
+
+                if (employee == null) {
+                    System.out.println("Employee not found");
+                    return;
                 }
 
+                employee.setFirst_name("Troncha");
+                employee.setLast_name("Toro");
 
+                boolean done = repository.update(idToUpdate, employee);
+                String msg = done ? "An employee has been updated" : "Employee could not be updated";
+                System.out.println(msg);
             } catch (SQLException e) {
                 System.out.println("Something went wrong");
                 e.printStackTrace();

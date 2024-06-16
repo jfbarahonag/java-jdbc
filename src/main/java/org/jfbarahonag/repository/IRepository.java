@@ -7,5 +7,6 @@ public interface IRepository <T> {
     List<T> findAll() throws SQLException;
     T getById(Integer id) throws SQLException;
     boolean save(T record) throws SQLException;
+    boolean update(int id, T record) throws SQLException;
     Integer delete(Integer id) throws SQLException;
 }
