@@ -20,7 +20,7 @@ public class Main {
             CASE_4,
         }
 
-        Example example = Example.CASE_3;
+        Example example = Example.CASE_4;
 
         if (example == Example.CASE_1) {
             try {
@@ -49,7 +49,7 @@ public class Main {
         if (example == Example.CASE_3) {
             try {
                 IRepository<Employee> repository = new EmployeeRepository();
-                int idToUpdate = 30;
+                int idToUpdate = 3;
 
                 Employee employee = repository.getById(idToUpdate);
 
@@ -64,22 +64,8 @@ public class Main {
                 boolean done = repository.update(idToUpdate, employee);
                 String msg = done ? "An employee has been updated" : "Employee could not be updated";
                 System.out.println(msg);
-            } catch (SQLException e) {
-                System.out.println("Something went wrong");
-                e.printStackTrace();
-            }
 
-            try (Connection myConnection = DatabaseConnection.getInstance();
-                 Statement myStatement = myConnection.createStatement();
-                 ResultSet myResultSet = myStatement.executeQuery("SELECT * FROM employees ORDER BY id ASC");
-                 ) {
-                while (myResultSet.next()) {
-                    System.out.println(
-                            myResultSet.getString("id") + ") " +
-                                    myResultSet.getString("first_name") + " " +
-                                    myResultSet.getString("last_name")
-                    );
-                }
+                repository.findAll().forEach(System.out::println);
             } catch (SQLException e) {
                 System.out.println("Something went wrong");
                 e.printStackTrace();
@@ -93,22 +79,8 @@ public class Main {
                 int idRemoved = repository.delete(idToRemove);
                 String msg = (idRemoved > 0) ? "Employee " + idRemoved + " has been deleted" : "Employee " + idToRemove + " could not be removed";
                 System.out.println(msg);
-            } catch (SQLException e) {
-                System.out.println("Something went wrong");
-                e.printStackTrace();
-            }
 
-            try (Connection myConnection = DatabaseConnection.getInstance();
-                 Statement myStatement = myConnection.createStatement();
-                 ResultSet myResultSet = myStatement.executeQuery("SELECT * FROM employees ORDER BY id ASC");
-            ) {
-                while (myResultSet.next()) {
-                    System.out.println(
-                            myResultSet.getString("id") + ") " +
-                                    myResultSet.getString("first_name") + " " +
-                                    myResultSet.getString("last_name")
-                    );
-                }
+                repository.findAll().forEach(System.out::println);
             } catch (SQLException e) {
                 System.out.println("Something went wrong");
                 e.printStackTrace();
