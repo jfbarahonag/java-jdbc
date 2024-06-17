@@ -1,12 +1,14 @@
 package org.jfbarahonag.repository;
 
 import org.jfbarahonag.model.Employee;
+import org.jfbarahonag.util.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeRepository implements IRepository<Employee> {
+
 
     private static Employee getEmployeeData(ResultSet response) throws SQLException {
         return new Employee(
@@ -17,17 +19,16 @@ public class EmployeeRepository implements IRepository<Employee> {
         );
     }
 
-    private final Connection connection;
-
-    public EmployeeRepository(Connection connection) {
-        this.connection = connection;
+    private Connection getConnection() throws SQLException {
+        return DatabaseConnection.getConnection();
     }
 
     @Override
     public List<Employee> findAll() throws SQLException {
         List<Employee> employees = new ArrayList<>();
-        try(Statement statement = connection.createStatement();
-            ResultSet response = statement.executeQuery("SELECT id, first_name, last_name FROM employees")
+        try(Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet response = statement.executeQuery("SELECT id, first_name, last_name, document FROM employees")
         ){
             while (response.next()) {
                 Employee employee = getEmployeeData(response);
@@ -40,7 +41,8 @@ public class EmployeeRepository implements IRepository<Employee> {
     @Override
     public Employee getById(Integer id) throws SQLException {
         Employee employee = null;
-        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM employees WHERE id=?")
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM employees WHERE id=?")
         ){
             statement.setInt(1, id);
             try(ResultSet result = statement.executeQuery()) {
@@ -55,7 +57,8 @@ public class EmployeeRepository implements IRepository<Employee> {
     @Override
     public boolean save(Employee record) throws SQLException {
         String sentence = "INSERT INTO employees (first_name, last_name, document) VALUES (?,?,?)";
-        try(PreparedStatement statement = connection.prepareStatement(sentence)) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sentence)) {
             statement.setString(1, record.getFirst_name());
             statement.setString(2, record.getLast_name());
             statement.setString(3, record.getDocument());
@@ -67,7 +70,8 @@ public class EmployeeRepository implements IRepository<Employee> {
     @Override
     public boolean update(int id, Employee record) throws SQLException {
         String sentence = "UPDATE employees SET first_name=?, last_name=?, document=? WHERE id=?";
-        try(PreparedStatement statement = connection.prepareStatement(sentence)) {
+        try(Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(sentence)) {
             statement.setString(1, record.getFirst_name());
             statement.setString(2, record.getLast_name());
             statement.setString(3, record.getDocument());
@@ -81,7 +85,8 @@ public class EmployeeRepository implements IRepository<Employee> {
     public Integer delete(Integer id) throws SQLException {
         String sentence = "DELETE FROM employees WHERE id=?";
         int rows = 0;
-        try (PreparedStatement statement = connection.prepareStatement(sentence)) {
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(sentence)) {
             statement.setInt(1, id);
             rows = statement.executeUpdate();
         }

@@ -52,7 +52,7 @@ public class SwingApp extends JFrame {
         deleteButton.setFocusPainted(false);
 
         // create Repository object to access to the database
-        employeeRepository = new EmployeeRepository(conn);
+        employeeRepository = new EmployeeRepository();
 
         // first load employees
         refreshEmployeesTable();

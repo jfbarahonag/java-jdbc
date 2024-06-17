@@ -3,44 +3,25 @@ package org.jfbarahonag;
 import org.jfbarahonag.model.Employee;
 import org.jfbarahonag.repository.EmployeeRepository;
 import org.jfbarahonag.repository.IRepository;
-import org.jfbarahonag.util.DatabaseConnection;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        try(Connection connection = DatabaseConnection.getInstance()) {
-            try {
-                IRepository<Employee> employeeRepository = new EmployeeRepository(connection);
-                System.out.println("--- Add new employee ---");
-                // Adding employee 1
-                Employee e = new Employee(
-                        "Carlangas",
-                        "Lanas Rosas",
-                        "1234567890"
-                );
-                boolean done = employeeRepository.save(e);
-                String msg = done ? "Employee created" : "Employee couldn't be created";
-                System.out.println("--- "+msg+" ---");
-                // Adding employee 2
-                Employee e2 = new Employee(
-                        "Papilla",
-                        "Rosales Candida",
-                        "1234567890"
-                );
-                done = employeeRepository.save(e2);
-                connection.commit();
-                msg = done ? "Employee created" : "Employee couldn't be created";
-                System.out.println("--- "+msg+" ---");
-            } catch (SQLException ex) {
-                connection.rollback();
-                System.out.println("--- Rollback executed ---");
-            }
+        try {
+            IRepository<Employee> repository = new EmployeeRepository();
+
+            System.out.println("--- Getting all employees---");
+            repository.findAll().forEach(System.out::println);
+
+            System.out.println("--- Getting an employee by ID---");
+            int employeeId = 3;
+            System.out.println(repository.getById(employeeId));
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println("SQL Exception");
+            e.printStackTrace();
         }
     }
 }
