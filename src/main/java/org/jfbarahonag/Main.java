@@ -7,17 +7,12 @@ import org.jfbarahonag.util.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         try(Connection connection = DatabaseConnection.getInstance()) {
-            if (connection.getAutoCommit()) {
-                connection.setAutoCommit(false);
-            }
-
             try {
                 IRepository<Employee> employeeRepository = new EmployeeRepository(connection);
                 System.out.println("--- Add new employee ---");
