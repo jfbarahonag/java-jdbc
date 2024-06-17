@@ -7,6 +7,7 @@ import org.jfbarahonag.repository.IRepository;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class SwingApp extends JFrame {
     private final IRepository<Employee> employeeRepository;
     private final JTable employeeTable;
 
-    public SwingApp() {
+    public SwingApp(Connection conn) {
         // Setup window
         setTitle("Employee manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +52,7 @@ public class SwingApp extends JFrame {
         deleteButton.setFocusPainted(false);
 
         // create Repository object to access to the database
-        employeeRepository = new EmployeeRepository();
+        employeeRepository = new EmployeeRepository(conn);
 
         // first load employees
         refreshEmployeesTable();
@@ -99,10 +100,12 @@ public class SwingApp extends JFrame {
         // form to add a new employee
         JTextField firstNameField = new JTextField();
         JTextField lastNameField = new JTextField();
+        JTextField documentField = new JTextField();
 
         Object[] fields = {
                 "Nombre", firstNameField,
-                "Apellidos", lastNameField
+                "Apellidos", lastNameField,
+                "Dcoumento", documentField,
         };
 
         int result = JOptionPane.showConfirmDialog(
@@ -116,7 +119,8 @@ public class SwingApp extends JFrame {
             // Create an instance of an employee
             Employee newEmployee = new Employee(
                     firstNameField.getText(),
-                    lastNameField.getText()
+                    lastNameField.getText(),
+                    documentField.getText()
             );
 
             employeeRepository.save(newEmployee);
@@ -160,10 +164,12 @@ public class SwingApp extends JFrame {
 
             JTextField firstNameField = new JTextField(employee.getFirst_name());
             JTextField lastNameField = new JTextField(employee.getLast_name());
+            JTextField documentField = new JTextField(employee.getDocument());
 
             Object[] fields = {
                     "First Name:", firstNameField,
-                    "Last Name:", lastNameField
+                    "Last Name:", lastNameField,
+                    "Document", documentField
             };
 
             int confirmResult = JOptionPane.showConfirmDialog(
@@ -179,6 +185,7 @@ public class SwingApp extends JFrame {
 
             employee.setFirst_name(firstNameField.getText());
             employee.setLast_name(lastNameField.getText());
+            employee.setDocument(documentField.getText());
 
             employeeRepository.update(employeeId, employee);
 
