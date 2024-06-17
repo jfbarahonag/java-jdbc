@@ -4,24 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c25aff3a-0d53-40be-a12b-045bac76d936" name="Changes" comment="mysql connector has been added using maven instead of installing it">
+    <list default="true" id="c25aff3a-0d53-40be-a12b-045bac76d936" name="Changes" comment="A pool connection has been implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/jfbarahonag/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/jfbarahonag/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2hqlUpHKFXKqOKu0FKQmITzLG6h" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -37,9 +44,29 @@
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Personal/courses/platzi/Java/Java_SE_SQL_DB/pruebaConexion",
     "onboarding.tips.debug.path": "C:/Personal/courses/platzi/Java/Java_SE_SQL_DB/CRUD/src/main/java/org/jfbarahonag/Main.java",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+    "settings.editor.selected.configurable": "com.intellij.jarRepository.settings.RemoteRepositoriesConfigurable"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.jfbarahonag.Main" />
+      <module name="CRUD" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.jfbarahonag.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -73,7 +100,151 @@
       <option name="project" value="LOCAL" />
       <updated>1718330767489</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="closing connections has been implemented to avoid memory leaks">
+      <option name="closed" value="true" />
+      <created>1718331480949</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718331480949</updated>
+    </task>
+    <task id="LOCAL-00005" summary="code has been refactored using try with resources">
+      <option name="closed" value="true" />
+      <created>1718333443861</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718333443861</updated>
+    </task>
+    <task id="LOCAL-00006" summary="code has been refactored using try with resources">
+      <option name="closed" value="true" />
+      <created>1718333515950</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718333515950</updated>
+    </task>
+    <task id="LOCAL-00007" summary="code has been refactored using try with resources">
+      <option name="closed" value="true" />
+      <created>1718335236125</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718335236125</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Database connection has been refactored to be used as a singleton">
+      <option name="closed" value="true" />
+      <created>1718419423731</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718419423731</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Employee repository has been created and tested in main file">
+      <option name="closed" value="true" />
+      <created>1718422140167</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718422140167</updated>
+    </task>
+    <task id="LOCAL-00010" summary="get by id has been tested">
+      <option name="closed" value="true" />
+      <created>1718493853794</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718493853794</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Repository has been completed">
+      <option name="closed" value="true" />
+      <created>1718496027352</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1718496027352</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update an employee has been added">
+      <option name="closed" value="true" />
+      <created>1718557826909</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1718557826909</updated>
+    </task>
+    <task id="LOCAL-00013" summary="refactoring main file">
+      <option name="closed" value="true" />
+      <created>1718558969584</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1718558969584</updated>
+    </task>
+    <task id="LOCAL-00014" summary="An employee manager has been created using Swing">
+      <option name="closed" value="true" />
+      <created>1718579841819</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718579841819</updated>
+    </task>
+    <task id="LOCAL-00015" summary="An employee manager has been created using Swing">
+      <option name="closed" value="true" />
+      <created>1718580164146</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1718580164146</updated>
+    </task>
+    <task id="LOCAL-00016" summary="An employee manager has been created using Swing">
+      <option name="closed" value="true" />
+      <created>1718580214189</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1718580214189</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Testing transactions with a new parameter &quot;document&quot;">
+      <option name="closed" value="true" />
+      <created>1718584830897</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1718584830897</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Testing transactions with a new parameter &quot;document&quot;">
+      <option name="closed" value="true" />
+      <created>1718584936572</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1718584936572</updated>
+    </task>
+    <task id="LOCAL-00019" summary="moving the configuration to its file">
+      <option name="closed" value="true" />
+      <created>1718585970966</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1718585970966</updated>
+    </task>
+    <task id="LOCAL-00020" summary="moving the configuration to its file">
+      <option name="closed" value="true" />
+      <created>1718590409683</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1718590409683</updated>
+    </task>
+    <task id="LOCAL-00021" summary="A pool connection has been implemented">
+      <option name="closed" value="true" />
+      <created>1718593224663</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1718593224663</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -90,6 +261,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="mysql connector has been added using maven instead of installing it" />
-    <option name="LAST_COMMIT_MESSAGE" value="mysql connector has been added using maven instead of installing it" />
+    <MESSAGE value="closing connections has been implemented to avoid memory leaks" />
+    <MESSAGE value="code has been refactored using try with resources" />
+    <MESSAGE value="Database connection has been refactored to be used as a singleton" />
+    <MESSAGE value="Employee repository has been created and tested in main file" />
+    <MESSAGE value="get by id has been tested" />
+    <MESSAGE value="Repository has been completed" />
+    <MESSAGE value="update an employee has been added" />
+    <MESSAGE value="refactoring main file" />
+    <MESSAGE value="An employee manager has been created using Swing" />
+    <MESSAGE value="Testing transactions with a new parameter &quot;document&quot;" />
+    <MESSAGE value="moving the configuration to its file" />
+    <MESSAGE value="A pool connection has been implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="A pool connection has been implemented" />
   </component>
 </project>
